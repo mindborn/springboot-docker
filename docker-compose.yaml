@@ -1,0 +1,22 @@
+services:
+  mdb:
+    image: mariadb
+    environment:
+      - MARIADB_ROOT_PASSWORD=root
+    expose:
+      - 3307
+    ports:
+      - "3307:3306"
+    volumes:
+      - c:\Containers\volumes\mysql:/var/lib/mysql:rw
+    
+  web:
+    build:
+      context: ./web
+      target: dev
+  
+  prodweb:
+    build:
+      context: ./web
+      target: prod
+    
